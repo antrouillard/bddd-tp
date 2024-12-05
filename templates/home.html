@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Mon exemple HTML Flask</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}"/>
-        
-        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-        <script src="{{url_for('static', filename='js/sample_js_route/sample.js')}}"></script>
-    </head>
-    <body>
-        <span class="title_1">Contenu</span>
-        <p>Voici un exemple de rendu de donnée sous forme de table avec du JS après un appel JQuerry:</p>
-        
-        <div class="my_div">
-            <button id="clear_table">CLEAR TABLE</button>
-            <button id="ajax_trigger">Ajax method</button>
-            <button id="post_trigger">Post method</button>
-            <div id="test_content">Datas will appear here !</div>
-        </div>
-        
-        <div class="my_div">
-            <input id="in_text" type="text"/>
-            <input id="in_number" type="number"/>
-            <button id="data_trigger">Test POST data !</button>
-        </div>
-    </body>
+<head>
+    <link rel="stylesheet" href="../static/css/home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Association</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur Ma Page d'Accueil</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="accueil">
+            <h2>Accueil</h2>
+            <p>Bienvenue sur notre site web. Nous sommes ravis de vous accueillir ici !<br><br><br><br></p>
+        </section>
+
+        <section id="services">
+            <h2>Nos Services</h2>
+            <ul>
+                <li><a href="auth/login.html">Ajout de membre</a></li>
+                <li>Ajout de groupe</li>
+                <li>Ajout de materiel</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email : contact@example.com</p>
+            <p>Téléphone : +33 1 23 45 67 89</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ma Page d'Accueil. Tous droits réservés.</p>
+    </footer>
+</body>
 </html>
