@@ -2,166 +2,20 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Gestion Association</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #681951;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            padding: 10px;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            width: 100%;
-        }
-
-        input[type="submit"] {
-            background-color: #681951;
-            color: white;
-            cursor: pointer;
-            border: none;
-            font-size: 16px;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #4a1034;
-        }
-    </style>
+    <title>Connexion</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}"/>
 </head>
 <body>
     <div class="form-container">
-        <h2>Ajouter un Membre</h2>
-        <form action="/membre/add" method="post">
-            <label for="nom">Nom:</label>
-            <input type="text" id="nom" name="nom" required>
-
-            <label for="prenom">Prénom:</label>
-            <input type="text" id="prenom" name="prenom" required>
-
-            <label for="adresse">Adresse:</label>
-            <textarea id="adresse" name="adresse" placeholder="Numéro, rue, ville, CP" required></textarea>
-
-            <label for="email">Email:</label>
+        <h2>Connexion</h2>
+        <form action="/login" method="post">
+            <label for="email">Email :</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="groupe">Groupe:</label>
-            <select id="groupe" name="groupe" required>
-                <option value="G1">Groupe 1</option>
-                <option value="G2">Groupe 2</option>
-                <!-- Ajoutez dynamiquement les groupes -->
-            </select>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
 
-            <label for="role">Rôle:</label>
-            <select id="role" name="role" required>
-                <option value="client">Client</option>
-                <option value="actif">Actif</option>
-            </select>
-
-            <input type="submit" value="Ajouter">
-        </form>
-    </div>
-
-    <div class="form-container">
-        <h2>Ajouter un Groupe</h2>
-        <form action="/groupe/add" method="post">
-            <label for="nomGroupe">Nom du Groupe:</label>
-            <input type="text" id="nomGroupe" name="nomGroupe" required>
-
-            <label for="ville">Ville:</label>
-            <input type="text" id="ville" name="ville" required>
-
-            <label for="cp">Code Postal:</label>
-            <input type="text" id="cp" name="cp" required>
-
-            <input type="submit" value="Créer Groupe">
-        </form>
-    </div>
-
-    <div class="form-container">
-        <h2>Ajouter du Matériel</h2>
-        <form action="/materiel/add" method="post">
-            <label for="numeroSerie">Numéro de Série:</label>
-            <input type="text" id="numeroSerie" name="numeroSerie" required>
-
-            <label for="marque">Marque:</label>
-            <input type="text" id="marque" name="marque" required>
-
-            <label for="modele">Modèle:</label>
-            <input type="text" id="modele" name="modele" required>
-
-            <label for="type">Type:</label>
-            <select id="type" name="type" required>
-                <option value="ecran">Écran</option>
-                <option value="clavier">Clavier</option>
-                <option value="souris">Souris</option>
-                <option value="tour">Tour</option>
-                <option value="laptop">Laptop</option>
-                <option value="enceintes">Enceintes</option>
-            </select>
-
-            <label for="prix">Prix:</label>
-            <input type="number" step="0.01" id="prix" name="prix" required>
-
-            <label for="groupe">Groupe:</label>
-            <select id="groupe" name="groupe" required>
-                <option value="G1">Groupe 1</option>
-                <option value="G2">Groupe 2</option>
-                <!-- Ajoutez dynamiquement les groupes -->
-            </select>
-
-            <input type="submit" value="Ajouter Matériel">
-        </form>
-    </div>
-
-    <div class="form-container">
-        <h2>Créer une Commande</h2>
-        <form action="/commande/add" method="post">
-            <label for="client">Client:</label>
-            <input type="text" id="client" name="client" required>
-
-            <label for="actif">Actif (vendeur):</label>
-            <input type="text" id="actif" name="actif" required>
-
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-
-            <label for="materiels">Matériels:</label>
-            <textarea id="materiels" name="materiels" placeholder="Liste des matériels (séparés par des virgules)" required></textarea>
-
-            <label for="total">Prix Total:</label>
-            <input type="number" step="0.01" id="total" name="total" required>
-
-            <input type="submit" value="Créer Commande">
+            <input type="submit" value="Se connecter">
         </form>
     </div>
 </body>

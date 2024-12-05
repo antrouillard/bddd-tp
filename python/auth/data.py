@@ -2,7 +2,8 @@
 
 from flask import session
 
-from .. import client
+'''from .. import client
+
 from .tools import execute_sql, execute_insert_sql
 
 
@@ -82,3 +83,4 @@ def logged_in() -> bool:
         if token_valid:
             return True
     return False
+    '''
