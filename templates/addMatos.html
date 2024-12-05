@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="../static/css/create.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+    <meta charset="UTF-8">
+    <title>Gestion Association</title>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Ajouter du Matériel</h2>
+        <form action="/materiel/add" method="post">
+            <label for="numeroSerie">Numéro de Série:</label>
+            <input type="text" id="numeroSerie" name="numeroSerie" required>
+
+            <label for="marque">Marque:</label>
+            <input type="text" id="marque" name="marque" required>
+
+            <label for="modele">Modèle:</label>
+            <input type="text" id="modele" name="modele" required>
+
+            <label for="type">Type:</label>
+            <select id="type" name="type" required>
+                <option value="ecran">Écran</option>
+                <option value="clavier">Clavier</option>
+                <option value="souris">Souris</option>
+                <option value="tour">Tour</option>
+                <option value="laptop">Laptop</option>
+                <option value="enceintes">Enceintes</option>
+            </select>
+
+            <label for="prix">Prix:</label>
+            <input type="number" step="0.01" id="prix" name="prix" required>
+
+            <label for="groupe">Groupe:</label>
+            <select id="groupe" name="groupe" required>
+                <option value="G1">Groupe 1</option>
+                <option value="G2">Groupe 2</option>
+                <!-- Ajoutez dynamiquement les groupes -->
+            </select>
+
+            <input type="submit" value="Ajouter Matériel">
+        </form>
+    </div>
+</body>
+</html>

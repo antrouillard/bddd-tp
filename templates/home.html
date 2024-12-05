@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Association</title>
@@ -22,15 +23,15 @@
     <main>
         <section id="accueil">
             <h2>Accueil</h2>
-            <p>Bienvenue sur notre site web. Nous sommes ravis de vous accueillir ici !<br><br><br><br></p>
+            <p>Bienvenue sur notre site web. Nous sommes ravis de vous accueillir ici !</p>
         </section>
 
         <section id="services">
             <h2>Nos Services</h2>
             <ul>
-                <li><a href="auth/login.html">Ajout de membre</a></li>
-                <li>Ajout de groupe</li>
-                <li>Ajout de materiel</li>
+                <li><a href="/register">Ajout de membre</a></li>
+                <li><a href="/createGroup">Ajout de groupe</a></li>
+                <li><a href="/addMatos">Ajout de materiel</a></li>
             </ul>
         </section>
 
