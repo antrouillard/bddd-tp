@@ -3,7 +3,7 @@
 from flask import session
 
 from .. import con
-
+from .create_village import create_village
 from .tools import execute_sql, execute_insert_sql
 
 
@@ -73,6 +73,7 @@ def create_user(login : str, password : str, token : str,nomVillage : str):
     sql,fdata = sql_select_user_id(token)
     user_id = execute_sql(sql, fdata)
     user_id = user_id[0]
+    create_village(user_id,nomVillage)
     con.commit()
     
 def logged_in() -> bool:

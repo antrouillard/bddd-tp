@@ -15,10 +15,5 @@ def searchCountry(country):
     
     print(f"Search done in {end-start:.30f}sec")
 
-#collection.delete_one({"COUNTRY":"GB"})
-#collection.insert_one({"REFERENCE":"84.232.545","CURRENCY":"GBP","PRICE":12,"COUNTRY":"GB"})
-
-searchCountry("GB")
-searchCountry("FR")
 
 client.close()
