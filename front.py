@@ -6,7 +6,7 @@ from flask import Flask, redirect
 from python.auth.routes import auth_blueprint
 
 # Create our Flask application object, kind of "global" variable
-app = Flask(__name__, template_folder="../templates", static_folder="../static")
+app = Flask(__name__, template_folder="./templates", static_folder="./static")
 
 # Enregistrer le Blueprint
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
