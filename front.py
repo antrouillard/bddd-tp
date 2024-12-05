@@ -1,30 +1,18 @@
-from flask import Flask, redirect, render_template
-
-app = Flask(__name__)
-
-@app.route('/')
-def bonjour():
-    return "<h1>Bonjour</h1>"
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    
-''' 
 # coding: utf-8
 
 # Import Flask requirements
-from flask import Flask
+from flask import Flask, redirect, render_template
 
 from .python.secret_key import generate_secret_key
 
 # Create our Flask application object, kind of "global" variable
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 
-app.secret_key = generate_secret_key()
+@app.route('/bonjour')
+def bonjour():
+    return "<h1>Bonjour</h1>"
 
-# Import submodules
-from . import auth
-from . import affichage
+app.secret_key = generate_secret_key()
 
 from .python.auth.data import logged_in
 
@@ -32,5 +20,7 @@ from .python.auth.data import logged_in
 def index():
     if not logged_in():
         return redirect("/login")
-    return render_template("InterfaceWEBMAIN.html")
-'''   
+    return render_template("home.html")
+
+if __name__ == '__main__':
+    app.run(debug=True)
