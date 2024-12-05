@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/create.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+    <meta charset="UTF-8">
+    <title>Gestion Association</title>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Ajouter un Groupe</h2>
+        <form action="/groupe/add" method="post">
+            <label for="nomGroupe">Nom du Groupe:</label>
+            <input type="text" id="nomGroupe" name="nomGroupe" required>
+
+            <label for="ville">Ville:</label>
+            <input type="text" id="ville" name="ville" required>
+
+            <label for="cp">Code Postal:</label>
+            <input type="text" id="cp" name="cp" required>
+
+            <input type="submit" value="Créer Groupe">
+        </form>
+    </div>
+</body>
+</html>
