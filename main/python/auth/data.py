@@ -1,85 +1,58 @@
-# coding : utf-8
+# coding: utf-8
 
 from flask import session
 
-'''from .. import client
-
-from .tools import execute_sql, execute_insert_sql
-
-
-def sql_select_login_psswrd(login : str,hashed_password: str) -> (str,dict):
-    sql: str = "SELECT idUser, login FROM Utilisateur WHERE login = %(login)s AND password = %(hashed_password)s;"
-    fdata: dict = {
-        "login": login,
-        "hashed_password": hashed_password,
-    }
-    return sql,fdata
-
-def is_credential_correct(login:str, hashed_password: str) -> bool :
-    sql, fdata = sql_select_login_psswrd(login,hashed_password)
-    res = execute_sql(sql, fdata)
-    if res == [] :
-        return False
-    else :
-        return True
-
-def sql_update_token(login : str,token: str) -> (str,dict):
-    sql: str = "UPDATE Utilisateur SET token =%(token)s WHERE login = %(login)s"
-    fdata: dict = {
-        "login": login,
-        "token": token,
-    }
-    return sql,fdata
+def get_collections_user(client):
+    db = client["assodb"]
+    collection = db["membres"]
     
-def set_token(login: str, token: str):
-    sql,fdata = sql_update_token(login,token)
-    execute_insert_sql(sql, fdata)
-    con.commit()
-    
-def sql_select_token(token: str) -> (str,dict):
-    sql: str = "SELECT token FROM Utilisateur WHERE token = %(token)s;"
-    fdata: dict = {
-        "token": token,
-    }
-    return sql,fdata   
-    
-def check_token_validity(token : str):
-    sql, fdata = sql_select_token(token)
-    res = execute_sql(sql, fdata)
-    if res == [] :
-        return False
-    else :
-        return True
-    
-def sql_insert_login_psswrd(login : str,password: str,token : str) -> (str,dict):
-    sql: str = "INSERT INTO Utilisateur(login,password,token) VALUES (%(login)s,%(password)s,%(token)s);"
-    fdata: dict = {
-        "login": login,
-        "password": password,
-        "token": token,
-    }
-    return sql,fdata
+    return collection
 
-def sql_select_user_id(token: str) -> (str,dict):
-    sql: str = "SELECT idUser FROM Utilisateur WHERE token = %(token)s;"
-    fdata: dict = {
-        "token": token,
-    }
-    return sql,fdata  
-
-def create_user(login : str, password : str, token : str,nomVillage : str):
-    sql,fdata = sql_insert_login_psswrd(login,password,token)
-    execute_insert_sql(sql, fdata)
-    sql,fdata = sql_select_user_id(token)
-    user_id = execute_sql(sql, fdata)
-    user_id = user_id[0]
-    con.commit()
+# Recherche un utilisateur dans MongoDB en fonction de son login et de son mot de passe haché.
+def get_login_psswrd(login: str, hashed_password: str, collection):
+    resultats = collection.find_one({"EMAIL": login, "PASSWORD": hashed_password})
     
-def logged_in() -> bool:
+    return resultats
+
+# Vérifie si les identifiants sont corrects.
+def is_credential_correct(login: str, hashed_password: str, collection) -> bool:
+    res = get_login_psswrd(login, hashed_password, collection)
+    
+    return res is not None
+
+# Met à jour le jeton d'un utilisateur dans MongoDB.
+def set_token(login: str, token: str, collection): 
+
+    collection.update_one({"EMAIL": login}, {"$set": {"TOKEN": token}})
+    
+# Vérifie si le jeton est valide.
+def check_token_validity(token: str, collection):
+    res = collection.find_one({"TOKEN": token})
+    
+    return res is not None
+
+# Crée un nouvel utilisateur dans MongoDB.
+def create_user(login: str, password: str, token: str, nomVillage: str, collection):
+    user_data = {
+        "EMAIL": login,
+        "PASSWORD": password,
+        "TOKEN": token,
+        "VILLAGE": nomVillage,
+    }
+    collection.insert_one(user_data)
+
+# Récupère l'ID d'utilisateur associé à un jeton.
+def get_user_id_by_token(token: str, collection):
+    
+    user = collection.find_one({"TOKEN": token}, {"_id": 1})
+    
+    return user["_id"] if user else None
+
+# Vérifie si l'utilisateur est connecté via le token stocké dans la session.
+def logged_in(client) -> bool:
     token: str = session.get("token", None)
+    
     if token:
-        token_valid: bool = check_token_validity(token)
-        if token_valid:
-            return True
+        return check_token_validity(token, client)
+    
     return False
-    '''

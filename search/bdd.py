@@ -1,24 +1,13 @@
 from pymongo import MongoClient
-import time
 client = MongoClient("mongodb://localhost:27017/")
 #client = MongoClient("mongodb://localhost:27020/")
-db = client["pricesdb"]
-collection = db["prices"]
+db = client["assodb"]
+user_collection = db["users"]
 
-def searchCountry(country):
-    start = time.time()
-    resultats = collection.find({"COUNTRY":country})
-    end = time.time()
+def searchUser(mail,hashed_password):
+    resultats = user_collection.find({"MAIL":mail})
 
-    for doc in resultats[0:5]:
-        print(doc)
-    
-    print(f"Search done in {end-start:.30f}sec")
-
-#collection.delete_one({"COUNTRY":"GB"})
-#collection.insert_one({"REFERENCE":"84.232.545","CURRENCY":"GBP","PRICE":12,"COUNTRY":"GB"})
-
-searchCountry("GB")
-searchCountry("FR")
+    for user in resultats[0:5]:
+        print(user)
 
 client.close()
