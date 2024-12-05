@@ -2,8 +2,7 @@
 
 from flask import session
 
-from .. import con
-from .create_village import create_village
+from .. import client
 from .tools import execute_sql, execute_insert_sql
 
 

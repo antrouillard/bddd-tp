@@ -18,9 +18,7 @@ from .python.auth.data import logged_in
 
 @app.route("/")
 def index():
-    if not logged_in():
-        return redirect("/login")
-    return render_template("home.html")
+    return redirect("/login")
 
 if __name__ == '__main__':
     app.run(debug=True)
