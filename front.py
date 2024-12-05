@@ -1,7 +1,7 @@
 # coding: utf-8
 
 # Import Flask requirements
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, url_for
 
 from .python.secret_key import generate_secret_key
 
