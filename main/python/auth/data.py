@@ -2,6 +2,10 @@
 
 from flask import session
 
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017/")
+
 def get_collections_user(client):
     db = client["assodb"]
     collection = db["membres"]
@@ -15,7 +19,8 @@ def get_login_psswrd(login: str, hashed_password: str, collection):
     return resultats
 
 # Vérifie si les identifiants sont corrects.
-def is_credential_correct(login: str, hashed_password: str, collection) -> bool:
+def is_credential_correct(login: str, hashed_password: str) -> bool:
+    collection = get_collections_user(client)
     res = get_login_psswrd(login, hashed_password, collection)
     
     return res is not None
@@ -49,7 +54,7 @@ def get_user_id_by_token(token: str, collection):
     return user["_id"] if user else None
 
 # Vérifie si l'utilisateur est connecté via le token stocké dans la session.
-def logged_in(client) -> bool:
+def logged_in(client = client) -> bool:
     token: str = session.get("token", None)
     
     if token:
