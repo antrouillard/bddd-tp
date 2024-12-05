@@ -2,20 +2,23 @@
 
 #from  import main
 
-from .. import app
 
 from .tools import hash_sha512, token_for
 
 # TO DO : Interroger l'endroit où l'on stocke les utilisateurs pour créer / vérifier
 # from .data import is_credential_correct, set_token, create_user
 
-from flask import redirect, render_template, request, session
+from flask import Blueprint,redirect, render_template, request, session
 
-@app.route("/login")
+# Créer un Blueprint pour les routes d'authentification
+auth_blueprint = Blueprint('auth', __name__, template_folder="../../templates", static_folder="../static")
+
+@auth_blueprint.route("/login")
 def login():
 # Pas besoin d'indiquer que le fichier index.html est dans le sous-dossier templates: c'est implicite avec la fonction render_template
     return render_template("auth/login.html")
 
+'''
 @app.route("/login/auth", methods=["POST"])
 def login_auth():
     login: str = request.form["login"]
@@ -51,3 +54,4 @@ def login_create():
         return "Compte créé"
     else :
         return "Le compte existe déja"
+        '''

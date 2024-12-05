@@ -1,26 +1,25 @@
 # coding: utf-8
 
 # Import Flask requirements
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect
 
-from .python.secret_key import generate_secret_key
+from python.auth.routes import auth_blueprint
 
 # Create our Flask application object, kind of "global" variable
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
+
+# Enregistrer le Blueprint
+app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
 @app.route('/bonjour')
 def bonjour():
     return "<h1>Bonjour</h1>"
 
-app.secret_key = generate_secret_key()
-
-from .python.auth.data import logged_in
 
 @app.route("/")
 def index():
-    if not logged_in():
-        return redirect("/login")
-    return render_template("home.html")
+    return redirect("/auth/login")
 
 if __name__ == '__main__':
+    # Lance le serveur'''
     app.run(debug=True)
