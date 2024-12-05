@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Mon exemple HTML Flask</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}"/>
+        
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script src="{{url_for('static', filename='js/sample_js_route/sample.js')}}"></script>
+    </head>
+    <body>
+        <span class="title_1">Contenu</span>
+        <p>Voici un exemple de rendu de donnée sous forme de table avec du JS après un appel JQuerry:</p>
+        
+        <div class="my_div">
+            <button id="clear_table">CLEAR TABLE</button>
+            <button id="ajax_trigger">Ajax method</button>
+            <button id="post_trigger">Post method</button>
+            <div id="test_content">Datas will appear here !</div>
+        </div>
+        
+        <div class="my_div">
+            <input id="in_text" type="text"/>
+            <input id="in_number" type="number"/>
+            <button id="data_trigger">Test POST data !</button>
+        </div>
+    </body>
+</html>
