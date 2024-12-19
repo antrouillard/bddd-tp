@@ -1,1 +1,32 @@
-# EMPTY FOR NOW
+
+services:
+  app:
+    build: .
+    container_name: app
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+    ports:
+      - "5000:5000"  # Expose le port 5000
+    volumes:
+      - .:/app
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
