@@ -12,11 +12,18 @@
         <h1>Bienvenue sur Ma Page d'Accueil</h1>
     </header>
     
-    <nav>
+    <nav style="
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;">
         <ul>
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
+        </ul>
+        <ul>
+            <li><a href="/auth/logout">Déconnexion</a></li>
         </ul>
     </nav>
 
