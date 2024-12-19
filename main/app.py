@@ -49,7 +49,7 @@ def profile():
 @app.route("/")
 def index():
     if not logged_in():
-        return redirect("/auth/login")
+        return redirect("/auth/inscription")
     return redirect("/home")
 if __name__ == '__main__':
     # Lance le serveur'''

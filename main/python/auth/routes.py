@@ -4,6 +4,8 @@
 from .tools import hash_sha512, token_for
 from .data import is_credential_correct, set_token, create_user
 from flask import Blueprint,redirect, render_template, request, session
+from python.db import db
+
 
 
 
@@ -49,3 +51,37 @@ def login_create():
 def logout():
     session.pop("token", None)
     return redirect("/auth/login")
+
+@auth_blueprint.route("/inscription")
+def inscription():
+    # Page pour afficher le formulaire d'inscription (inscription.html)
+    return render_template("auth/inscription.html")
+
+@auth_blueprint.route("/membre/add", methods=["POST"])
+def add_membre():
+    collection = db["membres"]
+    nom = request.form.get("nom")
+    prenom = request.form.get("prenom")
+    adresse = request.form.get("adresse")
+    email = request.form.get("email")
+    groupe = request.form.get("groupe")
+    role = request.form.get("role")
+
+    user = {
+        "NOM": nom,
+        "PRENOM": prenom,
+        "ADRESSE": adresse,
+        "EMAIL": email,
+        "GROUPE": groupe,
+        "ROLE": role,
+        "TOKEN": None
+    }
+
+    try:
+        collection.insert_one(user)
+        print(f"Utilisateur {email} ajouté dans la base de données.")
+    except DuplicateKeyError:
+        print(f"Erreur : L'utilisateur {email} existe déjà.")
+        return "Cet utilisateur existe déjà."
+
+    return "Utilisateur ajouté avec succès!"    
