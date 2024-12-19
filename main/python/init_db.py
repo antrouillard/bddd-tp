@@ -1,6 +1,6 @@
 from pymongo.errors import DuplicateKeyError
-from main.python.db import db  # Importer la connexion MongoDB centralisée
-from main.python.auth.tools import hash_sha512  # Import de votre fonction de hachage
+from python.db import db  # Importer la connexion MongoDB centralisée
+from python.auth.tools import hash_sha512  # Import de votre fonction de hachage
 
 # Accès à la collection "membres"
 collection = db["membres"]
