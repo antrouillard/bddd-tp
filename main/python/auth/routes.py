@@ -8,7 +8,7 @@ from flask import Blueprint,redirect, render_template, request, session
 
 
 # Créer un Blueprint pour les routes d'authentification
-auth_blueprint = Blueprint('auth', __name__, template_folder="../../templates", static_folder="../static")
+auth_blueprint = Blueprint('auth', __name__, template_folder="../../templates", static_folder="../../static")
 
 @auth_blueprint.route("/login")
 def login():

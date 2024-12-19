@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Données MongoDB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/display.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+</head>
+<body>
+    <h1>Résultats de la requête Matos</h1>
+    <table>
+        <thead>
+            <tr>
+                {% for key in data[0].keys() %}
+                    <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    {% for value in item.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

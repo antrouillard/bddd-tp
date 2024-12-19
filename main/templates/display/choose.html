@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BD Compass</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/display.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+</head>
+<body>
+    <nav style="
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;">
+        <ul>
+            <li><a href="/">Accueil</a></li>
+        </ul>
+        <ul>
+            <li><a href="/auth/logout">Déconnexion</a></li>
+        </ul>
+    </nav>
+    <h1 style="padding-left: 2%;">Que voir ?</h1>
+    <ul style="display: flex; justify-content: space-around;padding-top: 20%;">
+        <li><a href="/see/members">Membres</a></li>
+        <li><a href="/see/matos">Matériel</a></li>
+        <li><a href="/see/groups">Groupes</a></li>
+    </ul>
+</body>
+</html>
