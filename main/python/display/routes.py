@@ -20,3 +20,20 @@ def display_matos():
 
     data = list(collection.find())
     return render_template("display/displayMatos.html",data=data)
+
+@disp_blueprint.route("/members")
+def display_members():
+    """"""
+    collection = db["membres"]
+
+    data = list(collection.find())
+    return render_template("display/displayUsers.html",data=data)
+
+
+@disp_blueprint.route("/groups")
+def display_groups():
+    """"""
+    collection = db["groupe"]
+
+    data = list(collection.find())
+    return render_template("display/displayGroups.html",data=data)
