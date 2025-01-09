@@ -5,14 +5,14 @@
     <title>Formulaire Dynamique</title>
 </head>
 <body>
-    <form>
+    <form action="/command/create/add" method="post">
         <label for="options">Options :</label>
         <select id="group" name="groupName">
             {% for group in dataGroup %}
             <option value="{{group._id}}">{{group.NAME}}</option>
             {% endfor %}
         </select>
-        <select id="matos" name="matosName">
+        <select id="matos" name="matosName" multiple>
             {% for mat in dataMat %}
                 <option value="{{mat._id}}">{{mat.TYPE}} - {{mat.MARQUE}} {{mat.MODELE}}</option>
             {% endfor %}

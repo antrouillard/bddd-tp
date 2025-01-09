@@ -3,6 +3,7 @@
 from flask import Blueprint,redirect, render_template, request, session
 
 from python.db import db
+from .dataCommand import create_commande
 
 
 # Créer un Blueprint pour les routes de creation
@@ -20,3 +21,15 @@ def newCommand():
     print(dataMatos)
     
     return render_template("command/create.html",dataGroup=dataGroupes,dataMat=dataMatos)
+
+
+@command_blueprint.route("/create/add",methods=["POST"])
+def creationMatos():
+    print("Creation...")
+    
+    matos = request.form.getlist("matosName")
+    groupe: str = request.form.get("groupName")
+
+    create_commande(matos,groupe)
+
+    return "Matériel ajouté"
