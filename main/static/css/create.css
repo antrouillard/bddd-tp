@@ -51,3 +51,18 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #4a1034;
 }
+
+button[type="submit"] {
+    background-color: #681951;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #4a1034;
+}
