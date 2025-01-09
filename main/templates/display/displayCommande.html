@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Données MongoDB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/display.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+</head>
+<body>
+    <h1>Résultats de la requête Commande</h1>
+    <span><img src="{{ url_for('static', filename='/img/loupe.png') }}" alt="loupe" style="max-height: 1em;"></span>
+    <input type="text" id="searchInput" placeholder="Rechercher...">
+    <table>
+        <thead>
+            <tr>
+                {% for key in data[0].keys() %}
+                    <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    {% for value in item.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+<script>
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        var input = this.value.toLowerCase();
+        var rows = document.getElementsByTagName('tr');
+        for (var i = 1; i < rows.length; i++) {
+            var showRow = false;
+            var cells = rows[i].getElementsByTagName('td');
+            for (var j = 0; j < cells.length; j++) {
+                if (cells[j].innerHTML.toLowerCase().indexOf(input) > -1) {
+                    showRow = true;
+                    break;
+                }
+            }
+            rows[i].style.display = showRow ? '' : 'none';
+        }
+    });
+</script>
+</html>
