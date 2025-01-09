@@ -9,7 +9,7 @@
 <body>
     <div class="form-container">
         <h2>Commander du Matériel</h2>
-        <form>
+        <form action="/command/create/add" method="post">
             <label for="nomGroupe">Nom du Groupe:</label>
             <select id="group" name="groupName">
                 {% for group in dataGroup %}

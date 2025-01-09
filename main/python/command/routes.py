@@ -24,12 +24,11 @@ def newCommand():
 
 
 @command_blueprint.route("/create/add",methods=["POST"])
-def creationMatos():
+def creationCommande():
     print("Creation...")
     
     matos = request.form.getlist("matosName")
     groupe: str = request.form.get("groupName")
 
-    create_commande(matos,groupe)
-
-    return "Matériel ajouté"
+    if create_commande(matos,groupe):return redirect("/home")
+    else: return "Erreur à la commande"
