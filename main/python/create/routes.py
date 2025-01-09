@@ -3,6 +3,9 @@
 from flask import Blueprint,redirect, render_template, request, session
 from .dataMatos import create_matos
 from .dataGroup import does_group_exist, create_group
+from .dataUser import create_user
+
+from ..db import getGroupsID
 
 
 # Créer un Blueprint pour les routes de creation
@@ -10,7 +13,22 @@ creat_blueprint = Blueprint('creat', __name__, template_folder="../../templates"
 
 @creat_blueprint.route("/user")
 def cUser():
-    return render_template("create/user.html")
+    return render_template("create/user.html", data=getGroupsID())
+
+@creat_blueprint.route("/user/add", methods=['POST'])
+def pushUser():
+    nom: str = request.form["nom"]
+    prenom: str = request.form["prenom"]
+    motdepasse: str = request.form["motdepasse"]
+    adresse: str = request.form["adresse"]
+    email: str = request.form["email"]
+    groupe: str = request.form["groupe"]
+    role: str = request.form["role"]
+    if create_user(nom, prenom, motdepasse, adresse, email, groupe, role):
+        return "User créé"
+    else:
+        return "User existe déja"
+
 
 @creat_blueprint.route("/group")
 def cGroup():
@@ -28,7 +46,7 @@ def group_create():
 
 @creat_blueprint.route("/matos")
 def cMatos():
-    return render_template("create/matos.html")
+    return render_template("create/matos.html",data=getGroupsID())
 
 @creat_blueprint.route("/matos/add",methods=["POST"])
 def creationMatos():

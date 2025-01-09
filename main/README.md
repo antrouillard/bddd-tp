@@ -19,3 +19,8 @@ Information que j'ai modifié (ewenn) :
   - en mode dev, le lancement de app.py fonctionne. 
 - mise en place d'une bdd, possible de se connecter à la page home avec un id et mdp (fichier init_db)
 - quleques modifications de code dans data et route mais rien de méchant normalement
+
+
+## TODO 
+Fix le tableau de consulting ??
+Terminer les attributs de la commande (calculer prix total)

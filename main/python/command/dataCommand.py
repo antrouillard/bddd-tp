@@ -1,7 +1,10 @@
 
 from flask import session
 
+from ..auth.tools import current_datetime
+from ..auth.data import get_user_id_by_token
 from ..db import db  # Import de la connexion centralisée
+from bson.objectid import ObjectId
 
 def get_collections_commandes():
     """ Accéder à la collection 'command'"""
@@ -13,9 +16,13 @@ def create_commande(matos, groupe: str):
     Retourne 1 si succès 0 sinon
     """
     collection = get_collections_commandes()
+    idClient = str(get_user_id_by_token(session.get("token"),db["membres"]))
+    print(db["membres"].find_one({"_id": ObjectId(idClient)}))
     commande_data = {
         "MATERIEL": matos,
-        "GROUPE": groupe
+        "GROUPE": db["membres"].find_one({"_id": ObjectId(idClient)}).get("GROUPE"),
+        "CLIENT_ID": str(get_user_id_by_token(session.get("token"),db["membres"])),
+        "DATE": current_datetime(),
     }
     if not collection.find_one(commande_data):
         collection.insert_one(commande_data)

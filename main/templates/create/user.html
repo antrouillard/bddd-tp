@@ -9,12 +9,15 @@
 <body>
     <div class="form-container">
         <h2>Ajouter un Membre</h2>
-        <form action="/membre/add" method="post">
+        <form action="/create/user/add" method="post">
             <label for="nom">Nom:</label>
             <input type="text" id="nom" name="nom" required>
 
             <label for="prenom">Prénom:</label>
             <input type="text" id="prenom" name="prenom" required>
+
+            <label for="motdepasse">Mot de passe:</label>
+            <input type="password" name="motdepasse" id="motdepasse" required>
 
             <label for="adresse">Adresse:</label>
             <textarea id="adresse" name="adresse" placeholder="Numéro, rue, ville, CP" required></textarea>
@@ -24,9 +27,9 @@
 
             <label for="groupe">Groupe:</label>
             <select id="groupe" name="groupe" required>
-                <option value="G1">Groupe 1</option>
-                <option value="G2">Groupe 2</option>
-                <!-- Ajoutez dynamiquement les groupes -->
+                {% for id in data %}
+                    <option value="{{id[0]}}">{{id[1]}}</option>
+                {% endfor %}
             </select>
 
             <label for="role">Rôle:</label>
