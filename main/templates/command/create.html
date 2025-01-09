@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire Dynamique</title>
+</head>
+<body>
+    <form action="/soumettre" method="post">
+        {% for item in dataGroup %}
+            <label for="{{ item._id }}">{{ item.name }}</label>
+            <input type="text" id="{{ item._id }}" name="{{ item.name }}" value="{{ item.num }}">
+        {% endfor %}
+        <button type="submit">Soumettre</button>
+    </form>
+    {% for mat in dataMat %}
+        {{mat.modele}} <br>
+    {% endfor %}
+</body>
+</html>

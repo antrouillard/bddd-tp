@@ -8,6 +8,7 @@ from pymongo import MongoClient
 
 import os
 from python.auth.routes import auth_blueprint
+from python.command.routes import command_blueprint
 from python.create.routes import creat_blueprint
 from python.display.routes import disp_blueprint
 from python.auth.data import logged_in
@@ -31,14 +32,19 @@ app.secret_key = os.urandom(24)  # Génère une clé aléatoire à chaque démar
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
 app.register_blueprint(creat_blueprint, url_prefix='/create')
 app.register_blueprint(disp_blueprint,url_prefix='/see')
+app.register_blueprint(command_blueprint,url_prefix='/command')
 
 @app.route('/bonjour')
 def bonjour():
     return "<h1>Bonjour</h1>"
 
+
 @app.route("/home")
 def home():
+    if not logged_in():
+        return redirect("auth/login")
     return render_template("home.html")
+
 
 @app.route("/profile")
 def profile():
