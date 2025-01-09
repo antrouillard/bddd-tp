@@ -10,7 +10,9 @@ def get_collections_matos():
 
 
 def create_matos(numserie: str, marque: str, modele: str, typeuh: str, prix: str, groupe: str):
-    """Crée un nouveau materiel dans MongoDB."""
+    """Crée un nouveau materiel dans MongoDB.
+    Retourne 1 si succès 0 sinon
+    """
     collection = get_collections_matos()
     matos_data = {
         "NUMERO_SERIE": numserie,
@@ -22,5 +24,7 @@ def create_matos(numserie: str, marque: str, modele: str, typeuh: str, prix: str
     }
     if not db.matos.find_one(matos_data):
         db.matos.insert_one(matos_data)
+        return 1
     else:
         print("Matériel déjà existant")
+        return 0
