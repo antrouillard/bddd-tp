@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/create.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
     <meta charset="UTF-8">
-    <title>Formulaire Dynamique</title>
+    <title>Commande de Matériel</title>
 </head>
 <body>
-    <form action="/command/create/add" method="post">
-        <label for="options">Options :</label>
-        <select id="group" name="groupName">
-            {% for group in dataGroup %}
-            <option value="{{group._id}}">{{group.NAME}}</option>
-            {% endfor %}
-        </select>
-        <select id="matos" name="matosName" multiple>
-            {% for mat in dataMat %}
-                <option value="{{mat._id}}">{{mat.TYPE}} - {{mat.MARQUE}} {{mat.MODELE}}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Soumettre</button>
-    </form>
-
+    <div class="form-container">
+        <h2>Commander du Matériel</h2>
+        <form>
+            <label for="nomGroupe">Nom du Groupe:</label>
+            <select id="group" name="groupName">
+                {% for group in dataGroup %}
+                <option value="{{group._id}}">{{group.NAME}}</option>
+                {% endfor %}
+            </select>
+            <label for="nomMatos">Matériel:</label>
+            <select multiple id="matos" name="matosName">
+                {% for mat in dataMat %}
+                    <option value="{{mat._id}}">{{mat.TYPE}} - {{mat.MARQUE}} {{mat.MODELE}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Commander</button>
+        </form>
+    </div>
 </body>
 </html>
