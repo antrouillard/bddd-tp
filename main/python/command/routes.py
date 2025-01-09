@@ -11,11 +11,12 @@ command_blueprint = Blueprint('command', __name__, template_folder="../../templa
 @command_blueprint.route("/create")
 def newCommand():
 
-    groupes = db['group']
-    dataGroupes = list(groupes.find())
+    collGroup = db['groupe']
+    dataGroupes = list(collGroup.find())
 
-    matos = db['matos']
-    dataMatos = list(matos.find())
+    collection = db["matos"]
 
+    dataMatos = list(collection.find())
+    print(dataMatos)
     
     return render_template("command/create.html",dataGroup=dataGroupes,dataMat=dataMatos)

@@ -5,15 +5,20 @@
     <title>Formulaire Dynamique</title>
 </head>
 <body>
-    <form action="/soumettre" method="post">
-        {% for item in dataGroup %}
-            <label for="{{ item._id }}">{{ item.name }}</label>
-            <input type="text" id="{{ item._id }}" name="{{ item.name }}" value="{{ item.num }}">
-        {% endfor %}
+    <form>
+        <label for="options">Options :</label>
+        <select id="group" name="groupName">
+            {% for group in dataGroup %}
+            <option value="{{group._id}}">{{group.NAME}}</option>
+            {% endfor %}
+        </select>
+        <select id="matos" name="matosName">
+            {% for mat in dataMat %}
+                <option value="{{mat._id}}">{{mat.TYPE}} - {{mat.MARQUE}} {{mat.MODELE}}</option>
+            {% endfor %}
+        </select>
         <button type="submit">Soumettre</button>
     </form>
-    {% for mat in dataMat %}
-        {{mat.modele}} <br>
-    {% endfor %}
+
 </body>
 </html>
