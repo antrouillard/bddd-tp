@@ -4,8 +4,14 @@
     <title>Données MongoDB</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/display.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
+    <div style="display: flex; background-color: #681951;">
+        <button class="btn" onclick="location.href='http://localhost:5000/home'"><i class="fa fa-home"></i></button>
+        <button class="btn" onclick="location.href='http://localhost:5000/see'"><i class="fa fa-chevron-left"></i></button>
+    </div>
     <h1>Résultats de la requête Membres</h1>
     <span><img src="{{ url_for('static', filename='/img/loupe.png') }}" alt="loupe" style="max-height: 1em;"></span>
     <input type="text" id="searchInput" placeholder="Rechercher...">

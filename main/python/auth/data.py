@@ -18,7 +18,7 @@ def get_login_psswrd(login: str, hashed_password: str):
 
 
 def is_credential_correct(login: str, hashed_password: str) -> bool:
-    """# Vérifie si les identifiants sont corrects"""
+    """Vérifie si les identifiants sont corrects"""
     return get_login_psswrd(login, hashed_password) is not None
 
 
@@ -61,3 +61,9 @@ def logged_in() -> bool:
     if token:
         return check_token_validity(token)
     return False
+
+
+def log_off(token:str):
+    collection = get_collections_user()
+    collection.update_one({"TOKEN":token}, {"$set": {"TOKEN": None}})
+    print("User logged off")

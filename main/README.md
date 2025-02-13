@@ -22,5 +22,5 @@ Information que j'ai modifié (ewenn) :
 
 
 ## TODO 
-Fix le tableau de consulting ??
-Terminer les attributs de la commande (calculer prix total)
+Terminer les attributs de la commande (calculer prix total) DONE
+Faire une vraie déconnexion

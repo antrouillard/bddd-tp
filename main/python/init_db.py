@@ -11,10 +11,14 @@ def initialize_data():
     """Remplit la base de données avec des utilisateurs initiaux."""
     users = [
         {
-            "EMAIL": "jean.dupont@example.com",
+            "NOM":"Dupont",
+            "PRENOM": "Jean",
             "PASSWORD": hash_sha512("motdepasse"),  # Mot de passe haché
+            "ADRESSE" : "15, rue X, VA, 59300",
+            "EMAIL": "jean.dupont@example.com",
+            "GROUPE": "67644cac414760888d79da40",
+            "ACTIF?":  "client",
             "TOKEN": None,
-            "ISACTIF": True
         },
         {
             "NOM": "Simpson",

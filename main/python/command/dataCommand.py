@@ -18,9 +18,17 @@ def create_commande(matos, groupe: str):
     collection = get_collections_commandes()
     idClient = str(get_user_id_by_token(session.get("token"),db["membres"]))
     print(db["membres"].find_one({"_id": ObjectId(idClient)}))
+    
+    # boucle pour le prix total de la commande
+    coll_mat = db["matos"]
+    prix = 0
+    for mat in matos:
+        prix += int(coll_mat.find_one({"_id": ObjectId(mat)},{"_id":False,"PRIX":True})["PRIX"])
+
     commande_data = {
         "MATERIEL": matos,
         "GROUPE": db["membres"].find_one({"_id": ObjectId(idClient)}).get("GROUPE"),
+        "PRIX": prix,
         "CLIENT_ID": str(get_user_id_by_token(session.get("token"),db["membres"])),
         "DATE": current_datetime(),
     }
