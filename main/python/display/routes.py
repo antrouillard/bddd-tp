@@ -48,3 +48,11 @@ def display_groups():
 
     data = list(collection.find())
     return render_template("display/displayGroups.html",data=data)
+
+@disp_blueprint.route("/commandes")
+def display_commandes():
+    """"""
+    collection = db["commandes"]
+
+    data = list(collection.find())
+    return render_template("display/displayCommande.html",data=data)
