@@ -4,6 +4,9 @@ from flask import Blueprint,redirect, render_template, request, session
 
 from python.db import db
 from .dataCommand import create_commande
+from ..auth.data import get_user_id_by_token
+from bson.objectid import ObjectId
+from python.auth.data import logged_in
 
 
 # Créer un Blueprint pour les routes de creation
@@ -11,7 +14,11 @@ command_blueprint = Blueprint('command', __name__, template_folder="../../templa
 
 @command_blueprint.route("/create")
 def newCommand():
+    if not logged_in():
+        return render_template("/create/success.html",message="Connectez vous !")
 
+#    print(db["membres"].find_one({"_id": ObjectId('678001b85c564aedf77cca65')}).get("GROUPE"))
+    
     collGroup = db['groupe']
     dataGroupes = list(collGroup.find())
 
@@ -31,4 +38,5 @@ def creationCommande():
     groupe: str = request.form.get("groupName")
 
     if create_commande(matos,groupe):return redirect("/home")
-    else: return "Erreur à la commande"
+    else: return render_template("create/success.html",message="Erreur à la création")
+

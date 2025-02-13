@@ -4,21 +4,19 @@
     <title>BD Compass</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/display.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='/img/favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-    <nav style="
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;">
-        <ul>
-            <li><a href="/">Accueil</a></li>
-        </ul>
-        <ul>
-            <li><a href="/auth/logout">Déconnexion</a></li>
-        </ul>
-    </nav>
+    <div style="display: flex; background-color: #681951;">
+        <button class="btn" onclick="location.href='http://localhost:5000/'"><i class="fa fa-home"></i></button>
+    </div>
+    
     <h1 style="padding-left: 2%;">Que voir ?</h1>
+    <ul style="display: flex; justify-content: space-around;padding-top: 10%;">
+        <button class="BIGbtn" onclick="location.href='http://localhost:5000/see/members'"><i class="fa fa-user"></i> Membres</button>
+        <button class="BIGbtn" onclick="location.href='http://localhost:5000/see/matos'"><i class="fa fa-archive"></i> Matériel</button>
+        <button class="BIGbtn" onclick="location.href='http://localhost:5000/see/groups'"><i class="fa fa-users"></i> Groupes</button>
     <ul style="display: flex; justify-content: space-around;padding-top: 20%;">
         <li><a href="/see/members">Membres</a></li>
         <li><a href="/see/matos">Matériel</a></li>

@@ -1,7 +1,7 @@
 # coding: utf-8
 
 # Import Flask requirements
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, session
 
 #import pymongo
 from pymongo import MongoClient
@@ -47,7 +47,7 @@ def home():
 
 
 @app.route("/profile")
-def profile():
+def profile(): 
     if not logged_in():
         return redirect("/auth/login")
     return "Utilisateur connecté avec succès !"

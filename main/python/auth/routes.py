@@ -2,7 +2,7 @@
 
 #from  import main
 from .tools import hash_sha512, token_for
-from .data import is_credential_correct, set_token, create_user
+from .data import is_credential_correct, set_token, create_user, log_off
 from flask import Blueprint,redirect, render_template, request, session
 from python.db import db
 
@@ -31,7 +31,7 @@ def login_auth():
 
         return redirect("/")
     else:
-        return "Authentification échouée !"
+        return render_template("create/success.html",message="Authentification échouée")
         
 @auth_blueprint.route("/login/create", methods=["POST"])
 def login_create():
@@ -42,15 +42,18 @@ def login_create():
         user_token: str = token_for(login)
         create_user(login,hashed_password,user_token)
         session["token"]= user_token
-        return "Compte créé"
+        return render_template("create/success.html",message="Compte créé !")
     else :
-        return "Le compte existe déja"
+        return render_template("create/success.html",message="Compte déjà existant")
 
 
 @auth_blueprint.route("/logout")
 def logout():
-    session.pop("token", None)
-    return redirect("/auth/login")
+    print(session["SecureCookieSession"]) 
+    if session["token"] is not None:
+        log_off(session["token"])
+        return redirect("/auth/login")
+    return redirect("/home")
 
 @auth_blueprint.route("/inscription")
 def inscription():
@@ -82,6 +85,6 @@ def add_membre():
         print(f"Utilisateur {email} ajouté dans la base de données.")
     except DuplicateKeyError:
         print(f"Erreur : L'utilisateur {email} existe déjà.")
-        return "Cet utilisateur existe déjà."
+        return render_template("create/success.html",message="L'utilisateur existe déjà")
 
-    return "Utilisateur ajouté avec succès!"    
+    return render_template("create/success.html",message="Utilisateur ajouté")

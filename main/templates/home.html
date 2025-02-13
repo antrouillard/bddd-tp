@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Association</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <header>
@@ -23,7 +25,7 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <ul>
-            <li><a href="/auth/logout">Déconnexion</a></li>
+            <button class="btn" style="width: auto;" onclick="location.href='http://localhost:5000/auth/logout'"><i class="fa fa-sign-out"></i> Déconnexion</button>
         </ul>
     </nav>
 
@@ -35,12 +37,13 @@
 
         <section id="services">
             <h2>Nos Services</h2>
-            <ul>
-                <li><a href="/create/user">Ajout de membre</a></li>
-                <li><a href="/create/group">Ajout de groupe</a></li>
-                <li><a href="/create/matos">Ajout de materiel</a></li>
-                <li><a href="/see">Consulting</a></li>
-            </ul>
+            <div style="display: flex; flex-direction:row;">
+                <button class="btn" onclick="location.href='http://localhost:5000/create/user'"><i class="fa fa-plus"></i> <i class="fa fa-user"></i><br>Membre</button>
+                <button class="btn" onclick="location.href='http://localhost:5000/create/group'"><i class="fa fa-plus"></i> <i class="fa fa-users"></i><br>Ajout Groupe</button>
+                <button class="btn" onclick="location.href='http://localhost:5000/create/matos'"><i class="fa fa-plus"></i> <i class="fa fa-archive"></i><br>Ajout Matériel</button>
+                <button class="btn" onclick="location.href='http://localhost:5000/command/create'"><i class="fa fa-dollar"></i><br>Commander</button>
+                <button class="btn" onclick="location.href='http://localhost:5000/see'"><i class="fa fa-search"></i><br>Consulter la base</button>
+            </div>
         </section>
 
         <section id="contact">
@@ -49,9 +52,5 @@
             <p>Téléphone : +33 1 23 45 67 89</p>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2024 Ma Page d'Accueil. Tous droits réservés.</p>
-    </footer>
 </body>
 </html>
