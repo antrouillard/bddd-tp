@@ -49,7 +49,6 @@ def login_create():
 
 @auth_blueprint.route("/logout")
 def logout():
-    print(session["SecureCookieSession"]) 
     if session["token"] is not None:
         log_off(session["token"])
         return redirect("/auth/login")

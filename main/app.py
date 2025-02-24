@@ -45,7 +45,7 @@ def home():
         return redirect("auth/login")
     return render_template("home.html")
 
- 
+
 @app.route("/profile")
 def profile(): 
     if not logged_in():
