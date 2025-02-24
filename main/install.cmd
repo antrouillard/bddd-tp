@@ -1,0 +1,1 @@
+docker compose -p "app_antoine_ewenn_maxime_noe" up

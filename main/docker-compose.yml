@@ -3,6 +3,7 @@ services:
   app:
     build: .
     container_name: app
+    command: python -u app.py
     depends_on:
       - mongodb
     networks:
