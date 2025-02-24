@@ -1,5 +1,3 @@
-main/python/__pycache__/
-main/python/auth/__pycache__/
-main/python/command/__pycache__/
-main/python/create/__pycache__/
-main/python/display/__pycache__/
+__pycache__/
+.vscode
+.idea
